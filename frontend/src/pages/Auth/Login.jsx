@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { validateEmail } from "../../utils/helper"; // adjust path if needed
 import AuthLayout from "../../components/layouts/AuthLayout"; // adjust path if needed
 import axiosInstance from "../../utils/axiosinstance";
-import { API_PATHS } from "../../utils/apipaths";
+import { API_PATHS } from "../../utils/apiPaths";
 
 const Login = () => {
   const [email, setEmail] = useState("");
