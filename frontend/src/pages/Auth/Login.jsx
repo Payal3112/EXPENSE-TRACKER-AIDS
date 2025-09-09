@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { validateEmail } from "../../utils/helper"; // adjust path if needed
 import AuthLayout from "../../components/layouts/AuthLayout"; // adjust path if needed
+import axiosInstance from "../../utils/axiosinstance";
+import { API_PATHS } from "../../utils/apipaths";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -34,8 +36,29 @@ const Login = () => {
     console.log("Form valid, calling API...");
 
     // TODO: Call your API here
-    navigate("/dashboard");
-  };
+    //Login Api call
+    try{
+      const response= await axiosInstance.post(API_PATHS.AUTH.LOGIN,{
+        email,
+        password
+      });
+      const{token,user } = response.data;
+      if (token){
+        localStorage.setItem("token",token);
+        navigate("/dashboard");
+
+      }
+    }catch(error){
+      if (error.response && error.response.data.message){
+        setError(error.response.data.message);
+      }else{
+        setError("Something went wrong. Please try again .")
+      }
+
+    }
+  }
+
+    ;
 
   return (
     <AuthLayout>
