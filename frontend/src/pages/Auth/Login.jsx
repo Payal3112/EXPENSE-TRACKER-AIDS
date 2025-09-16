@@ -1,64 +1,61 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { validateEmail } from "../../utils/helper"; // adjust path if needed
 import AuthLayout from "../../components/layouts/AuthLayout"; // adjust path if needed
-import axiosInstance from "../../utils/axiosinstance";
+import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
+import { UserContext } from "../../context/UserContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   // Handle login form submit
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    // Validation
     if (!validateEmail(email)) {
       setError("Please enter a valid email address");
       return;
     }
-
     if (!password) {
       setError("Please enter the password");
       return;
     }
-
     if (password.length < 8) {
       setError("Password must be at least 8 characters long");
       return;
     }
 
-    setError(""); // clear error
-    console.log("Form valid, calling API...");
+    setError(""); // clear previous errors
 
-    // TODO: Call your API here
-    //Login Api call
-    try{
-      const response= await axiosInstance.post(API_PATHS.AUTH.LOGIN,{
+    try {
+      const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
         email,
-        password
+        password,
       });
-      const{token,user } = response.data;
-      if (token){
-        localStorage.setItem("token",token);
+
+      const { token, user } = response.data;
+
+      if (token) {
+        localStorage.setItem("token", token);
+        updateUser(user);
         navigate("/dashboard");
-
       }
-    }catch(error){
-      if (error.response && error.response.data.message){
-        setError(error.response.data.message);
-      }else{
-        setError("Something went wrong. Please try again .")
+    } catch (err) {
+      if (err.response && err.response.data.message) {
+        setError(err.response.data.message);
+      } else {
+        setError("Something went wrong. Please try again.");
       }
-
     }
-  }
-
-    ;
+  };
 
   return (
     <AuthLayout>
@@ -127,10 +124,7 @@ const Login = () => {
           {/* Signup link */}
           <p className="text-sm text-slate-800 mt-3">
             Don’t have an account?{" "}
-            <Link
-              className="font-medium text-indigo-600 underline"
-              to="/signup"
-            >
+            <Link className="font-medium text-indigo-600 underline" to="/signup">
               SignUp
             </Link>
           </p>
