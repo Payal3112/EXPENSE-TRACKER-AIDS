@@ -1,32 +1,27 @@
-require("dotenv").config();
 const express = require("express");
-const cors =require("cors");
-const path = require("path");
+const dotenv = require("dotenv");
+const cors = require("cors");
 const connectDB = require("./config/db");
-const authRoutes = require("./routes/authRoutes");
 
-const app =  express();
+const incomeRoutes = require("./routes/incomeRoutes");
+const authRoutes = require("./routes/authRoutes"); // ✅ ADD THIS
 
-app.use(
-    cors(
-        {
-            origin: process.env.CLIENT_URL || "*",
-            methods: ["GET", "POST", "PUT" , "DELETE"],
-            allowedHeaders: ["Content-Type", "Authorization"],
-        } )
-);
-
-app.use(express.json());
-
+dotenv.config();
 connectDB();
 
-app.use("/api/v1/auth", authRoutes);
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+// ✅ Mount both route groups
+app.use("/api/v1/auth", authRoutes);     // <-- ADD THIS LINE
+app.use("/api/v1/income", incomeRoutes);
+
 
 app.get("/", (req, res) => {
-    res.send("API is running and connected to MongoDB ✅");
-  });
-  
+  res.send("API is running...");
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
