@@ -25,34 +25,38 @@ const SideMenu = ({ activeMenu }) => {
   return (
     <div className="w-64 h-[calc(100vh-61px)] bg-white border-r border-gray-200/50 p-5 sticky top-[61px] z-20">
       {/* Profile Section */}
-      <div className="flex flex-col items-center justify-center gap-3 mt-3 mb-7">
-        {user?.profileImageUrl ? (
-          <img
-            src={user.profileImageUrl}
-            alt="Profile"
-            className="w-20 h-20 bg-slate-400 rounded-full object-cover"
-          />
-        ) : (
-          <CharAvatar
-            fullName={user?.fullName}
-            width="w-20"
-            height="h-20"
-            style="text-xl"
-          />
-        )}
-        {user?.fullName && (
-          <h5 className="text-gray-950 font-medium leading-6">{user.fullName}</h5>
-        )}
-      </div>
+      {user && (user.fullName || user.profileImageUrl) && (
+        <div className="flex flex-col items-center justify-center gap-3 mt-3 mb-7">
+          {user.profileImageUrl ? (
+            <img
+              src={user.profileImageUrl}
+              alt="Profile"
+              className="w-20 h-20 rounded-full object-cover"
+            />
+          ) : (
+            <CharAvatar
+              fullName={user.fullName}
+              width="w-20"
+              height="h-20"
+              style="text-xl"
+            />
+          )}
+          {user.fullName && (
+            <h5 className="text-gray-950 font-medium leading-6">
+              {user.fullName}
+            </h5>
+          )}
+        </div>
+      )}
 
       {/* Menu Section */}
       {SIDE_MENU_DATA.map((item, index) => (
         <button
           key={`menu_${index}`}
           className={`w-full flex items-center gap-4 text-[15px] py-3 px-6 rounded-lg mb-3 transition-colors ${
-            activeMenu === item.label.toLowerCase()
+            activeMenu === item.label
               ? "text-white bg-purple-600"
-              : "text-gray-700 hover:bg-gray-100"
+              : "text-gray-700 hover:bg-purple-100"
           }`}
           onClick={() => handleClick(item.path)}
         >

@@ -1,30 +1,23 @@
-import React, { useContext } from "react";
-import { UserContext } from "../../context/UserContext";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { Menu } from "lucide-react"; // or your icon library
 
-const Navbar = () => {
-  const { user, clearUser } = useContext(UserContext);
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.clear();
-    clearUser();
-    navigate("/login");
-  };
-
+const Navbar = ({ onToggleSidebar }) => {
   return (
-    <div className="h-[61px] w-full flex items-center justify-between px-6 bg-white border-b border-gray-200 shadow-sm sticky top-0 z-30">
-      <h1 className="text-lg font-semibold text-gray-900">Expense Tracker</h1>
+    <div className="h-[61px] flex items-center justify-between px-5 border-b border-gray-200 bg-white">
+      {/* Left: Hamburger + Title */}
+      <div className="flex items-center gap-3">
+        <button
+          onClick={onToggleSidebar}
+          className="p-2 rounded-md hover:bg-gray-100"
+        >
+          <Menu className="w-6 h-6" />
+        </button>
+        <h1 className="font-semibold text-lg">Expense Tracker</h1>
+      </div>
+
+      {/* Right: (optional user info / actions) */}
       <div className="flex items-center gap-4">
-        {user?.fullName && <span className="text-gray-700 font-medium">{user.fullName}</span>}
-        {user && (
-          <button
-            onClick={handleLogout}
-            className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors cursor-pointer"
-          >
-            Logout
-          </button>
-        )}
+        {/* Example placeholder */}
       </div>
     </div>
   );
