@@ -6,6 +6,7 @@ import { IoMdCard } from "react-icons/io";
 import { addThousandsSeparator } from "../../utils/helper";
 import axiosInstance from "../../utils/axiosinstance";
 import { API_PATHS } from "../../utils/apiPaths";
+import { LuHandCoins, LuWalletMinimal } from "react-icons/lu";
 
 const Home = () => {
   const user = useUserAuth();
