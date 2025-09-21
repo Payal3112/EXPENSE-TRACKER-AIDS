@@ -20,3 +20,11 @@ export const addThousandsSeparator = (num) => {
   if (num === null || num === undefined || isNaN(num)) return "";
   return Number(num).toLocaleString("en-IN");
 };
+
+export const prepareExpenseBarChartData = (data = []) => {
+  const chartData = data.map((item) =>  ({
+    category: item?.category,
+    amount: item?.amount,
+  }));
+  return  chartData;
+};
