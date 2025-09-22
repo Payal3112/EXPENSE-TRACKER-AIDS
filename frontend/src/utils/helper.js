@@ -1,3 +1,5 @@
+import moment from "moment";
+
 // Validate email using regex
 export const validateEmail = (email) => {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -21,16 +23,19 @@ export const addThousandsSeparator = (num) => {
   return Number(num).toLocaleString("en-IN");
 };
 
+// Prepare expense chart
 export const prepareExpenseBarChartData = (data = []) => {
-  const chartData = data.map((item) =>  ({
+  return data.map((item) => ({
     category: item?.category,
     amount: item?.amount,
   }));
-  return  chartData;
 };
 
+// Prepare income chart
 export const prepareIncomeBarChartData = (data = []) => {
   console.log("Raw income data for chart:", data);
+
+  if (!data.length) return [];
 
   const sortedData = [...data].sort(
     (a, b) => new Date(a.date) - new Date(b.date)
@@ -38,7 +43,6 @@ export const prepareIncomeBarChartData = (data = []) => {
 
   const chartData = sortedData.map((item) => {
     console.log("Processing income item:", item);
-
     return {
       month: moment(item?.date).format("Do MMM"),
       amount: item?.amount,

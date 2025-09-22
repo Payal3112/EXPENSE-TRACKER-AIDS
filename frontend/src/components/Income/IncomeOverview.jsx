@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"; // ✅ import hooks
+import React, { useState, useEffect } from "react";
 import { LuPlus } from "react-icons/lu";
 import CustomBarChart from "../Charts/CustomBarChart";
 import { prepareIncomeBarChartData } from "../../utils/helper";
@@ -9,8 +9,6 @@ const IncomeOverview = ({ transactions, onAddIncome }) => {
   useEffect(() => {
     const result = prepareIncomeBarChartData(transactions);
     setCharData(result);
-
-    return () => {};
   }, [transactions]);
 
   return (
