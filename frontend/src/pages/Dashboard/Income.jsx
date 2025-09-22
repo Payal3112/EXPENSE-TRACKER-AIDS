@@ -7,7 +7,12 @@ import Modal from "../../components/Modal";
 const Income = () => {
   const [incomeData, setIncomeData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [openDeleteAlert, setOpenDeleteAlert] = useState({
+    show: false,
+    data: null,
+  });
   const [openAddIncomeModal, setOpenAddIncomeModal] = useState(false);
+
 
   // Fetch all income details
   const fetchIncomeDetails = async () => {
@@ -41,11 +46,11 @@ const Income = () => {
       </div>
 
       <Modal
-        onOpen={openAddIncomeModal}
+        isOpen={openAddIncomeModal}
         onClose={() => setOpenAddIncomeModal(false)}
         title="Add Income"
       >
-        <div>Add Income Form</div>
+       <div>Add income form</div>
       </Modal>
     </div>
   );
