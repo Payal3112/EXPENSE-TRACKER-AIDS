@@ -14,11 +14,20 @@ const App = () => {
     <UserProvider>
       <Router>
         <Routes>
+          {/* Root redirect based on auth */}
           <Route path="/" element={<Root />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signUp" element={<SignUp />} />
 
-          {/* Dashboard routes inside layout */}
+          {/* Auth routes */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+
+          {/* Redirect old /income URL to /dashboard/income */}
+          <Route path="/income" element={<Navigate to="/dashboard/income" />} />
+
+          {/* Redirect old /expense URL to /dashboard/expense */}
+          <Route path="/expense" element={<Navigate to="/dashboard/expense" />} />
+
+          {/* Dashboard routes */}
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route index element={<Home />} />
             <Route path="income" element={<Income />} />

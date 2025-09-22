@@ -28,3 +28,24 @@ export const prepareExpenseBarChartData = (data = []) => {
   }));
   return  chartData;
 };
+
+export const prepareIncomeBarChartData = (data = []) => {
+  console.log("Raw income data for chart:", data);
+
+  const sortedData = [...data].sort(
+    (a, b) => new Date(a.date) - new Date(b.date)
+  );
+
+  const chartData = sortedData.map((item) => {
+    console.log("Processing income item:", item);
+
+    return {
+      month: moment(item?.date).format("Do MMM"),
+      amount: item?.amount,
+      source: item?.source,
+    };
+  });
+
+  console.log("Prepared chartData:", chartData);
+  return chartData;
+};

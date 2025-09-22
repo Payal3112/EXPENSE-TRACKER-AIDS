@@ -13,6 +13,7 @@ const DashboardLayout = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      {/* ✅ Expense Tracker top bar stays */}
       <Navbar onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
 
       <div className="flex flex-1">
@@ -37,9 +38,9 @@ const DashboardLayout = () => {
         )}
 
         {/* Main content */}
-        <div className="flex-1 p-5">
+        <div className="flex-1 p-5 overflow-y-auto">
           {user ? (
-            <Outlet /> // Nested pages render here
+            <Outlet /> 
           ) : (
             <p className="text-gray-500">Please log in to continue.</p>
           )}
