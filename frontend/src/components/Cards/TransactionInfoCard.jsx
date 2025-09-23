@@ -3,7 +3,7 @@ import { LuTrendingUp, LuTrendingDown, LuTrash2 } from "react-icons/lu";
 
 const TransactionInfoCard = ({
   title,
-  
+  icon,
   date,
   amount,
   type,

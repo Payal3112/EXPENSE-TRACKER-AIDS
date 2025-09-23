@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
+
 import Login from "./pages/Auth/Login";
 import SignUp from "./pages/Auth/SignUp";
 import Home from "./pages/Dashboard/Home";
@@ -8,6 +9,7 @@ import Income from "./pages/Dashboard/Income";
 import Expense from "./pages/Dashboard/Expense";
 import DashboardLayout from "./components/layouts/DashboardLayout";
 import UserProvider from "./context/UserContext";
+import {Toaster} from "react-hot-toast";
 
 const App = () => {
   return (
@@ -35,6 +37,14 @@ const App = () => {
           </Route>
         </Routes>
       </Router>
+      <Toaster 
+          toastOptions={{
+            classname: "",
+            style: {
+              fontSize: '13px'
+            },
+          }}
+        />
     </UserProvider>
   );
 };
