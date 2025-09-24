@@ -10,18 +10,18 @@ const TransactionInfoCard = ({
   hideDeleteBtn,
   onDelete,
 }) => {
-  // Determine amount styling
+  // Determine pill styling
   const getAmountStyles = () =>
-    type === "income" ? "bg-green-50 text-green-500" : "bg-red-50 text-red-500";
-
-  const imageUrl = "https://i.postimg.cc/wTvsxzMV/food.jpg"; // fixed image for all
+    type === "income"
+      ? "bg-green-50 text-green-500"
+      : "bg-red-50 text-red-500";
 
   return (
     <div className="group relative flex items-center gap-4 mt-2 p-3 rounded-lg hover:bg-gray-100/60">
-      {/* Image */}
+      {/* Icon Image */}
       <div className="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-full">
         <img
-          src={imageUrl}
+          src={icon} // <-- your rent, food, salary images
           alt={title}
           className="w-8 h-8 object-cover rounded-full"
         />
@@ -34,7 +34,7 @@ const TransactionInfoCard = ({
           <p className="text-xs text-gray-400 mt-1">{date}</p>
         </div>
 
-        {/* Delete and amount */}
+        {/* Amount and arrow */}
         <div className="flex items-center gap-2">
           {!hideDeleteBtn && (
             <button
