@@ -53,3 +53,26 @@ export const prepareIncomeBarChartData = (data = []) => {
   console.log("Prepared chartData:", chartData);
   return chartData;
 };
+export const prepareExpenseLineChartData = (data = []) => {
+  if (!Array.isArray(data) || data.length === 0) return [];
+
+  const dailyMap = {};
+
+  data.forEach((item) => {
+    if (!item || !item.date || !item.amount) return;
+
+    const day = moment(item.date).format("Do MMM"); // e.g., "24 Sep"
+    if (!dailyMap[day]) dailyMap[day] = 0;
+
+    dailyMap[day] += Number(item.amount);
+  });
+
+  const chartData = Object.keys(dailyMap)
+    .sort((a, b) => moment(a, "Do MMM") - moment(b, "Do MMM"))
+    .map((day) => ({
+      month: day,
+      amount: dailyMap[day],
+    }));
+
+  return chartData;
+};
