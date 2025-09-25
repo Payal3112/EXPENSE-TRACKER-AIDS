@@ -18,13 +18,18 @@ const TransactionInfoCard = ({
 
   return (
     <div className="group relative flex items-center gap-4 mt-2 p-3 rounded-lg hover:bg-gray-100/60">
-      {/* Icon Image */}
-      <div className="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-full">
-        <img
-          src={icon} // <-- your rent, food, salary images
-          alt={title}
-          className="w-8 h-8 object-cover rounded-full"
-        />
+      {/* Icon Image or Emoji */}
+      <div className="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-full text-2xl">
+        {typeof icon === "string" && icon.length <= 3 && !icon.startsWith("http") ? (
+          // ✅ Emoji will show
+          <span className="text-3xl">{icon}</span>
+        ) : (
+          <img
+            src={icon || "https://i.postimg.cc/default-income.png"}
+            alt={title}
+            className="w-8 h-8 object-cover rounded-full"
+          />
+        )}
       </div>
 
       {/* Title and date */}
