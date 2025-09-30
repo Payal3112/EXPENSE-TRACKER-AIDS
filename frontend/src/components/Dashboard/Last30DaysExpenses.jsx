@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CustomBarChart from "../Charts/CustomBarChart";
-import { prepareExpenseBarChartData } from "../../utils/helper";
+import { prepareExpenseBarChartData, formatCurrency } from "../../utils/helper"; // updated import
 
 const Last30DaysExpenses = ({ data }) => {
   const [chartData, setChartData] = useState([]);
@@ -18,8 +18,8 @@ const Last30DaysExpenses = ({ data }) => {
 
       <CustomBarChart
         data={chartData}
-        xDataKey="category"       // ✅ important
-        tooltipLabelKey="category" // ✅ important
+        xDataKey="category"
+        tooltipLabelKey="category"
       />
     </div>
   );

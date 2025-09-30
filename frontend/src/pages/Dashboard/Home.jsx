@@ -5,7 +5,7 @@ import InfoCard from "../../components/Cards/InfoCard";
 import { IoMdCard } from "react-icons/io";
 import axiosInstance from "../../utils/axiosinstance";
 import { API_PATHS } from "../../utils/apiPaths";
-import { addThousandsSeparator } from "../../utils/helper";
+import { formatCurrency } from "../../utils/helper";
 import { LuHandCoins, LuWalletMinimal } from "react-icons/lu";
 import RecentTransactions from "../../components/Dashboard/RecentTransactions";
 import FinanceOverview from "../../components/Dashboard/FinanceOverview";
@@ -45,26 +45,26 @@ const Home = () => {
         <InfoCard
           icon={<IoMdCard />}
           label="Total Balance"
-          value={addThousandsSeparator(dashboardData?.totalBalance || 0)}
+          value={formatCurrency(dashboardData?.totalBalance || 0)}
           color="bg-primary"
         />
         <InfoCard
           icon={<LuWalletMinimal />}
           label="Total Income"
-          value={addThousandsSeparator(dashboardData?.totalIncome || 0)}
+          value={formatCurrency(dashboardData?.totalIncome || 0)}
           color="bg-orange-500"
         />
         <InfoCard
           icon={<LuHandCoins />}
           label="Total Expense"
-          value={addThousandsSeparator(dashboardData?.totalExpense || 0)}
+          value={formatCurrency(dashboardData?.totalExpense || 0)}
           color="bg-red-500"
         />
       </div>
 
       {/* Dashboard Grid → 2 columns × 3 rows */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-        {/* ✅ Fixed: Recent Transactions → show both income + expense */}
+        {/* Recent Transactions → show both income + expense */}
         <RecentTransactions
           transactions={[
             ...(dashboardData?.last30DaysExpenses?.transactions || []).map(tx => ({

@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
   Cell,
 } from "recharts";
+import { formatCurrency } from "../../utils/helper"; // use helper
 
 const CustomBarChart = ({ data, xDataKey = "month", tooltipLabelKey = "source" }) => {
   const getBarColor = (index) => (index % 2 === 0 ? "#875cf5" : "#cfbefb");
@@ -23,7 +24,7 @@ const CustomBarChart = ({ data, xDataKey = "month", tooltipLabelKey = "source" }
           <p className="text-sm text-gray-600">
             Amount:{" "}
             <span className="text-sm font-medium text-gray-900">
-              ${payload[0].payload.amount}
+              {formatCurrency(payload[0].payload.amount)}
             </span>
           </p>
         </div>

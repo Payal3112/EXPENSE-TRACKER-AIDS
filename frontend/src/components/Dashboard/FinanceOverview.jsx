@@ -1,5 +1,6 @@
 import React from "react";
-import CustomerPieChart from "../Charts/CustomerPieChart"; // make sure to import your chart
+import CustomPieChart from "../Charts/CustomerPieChart";
+import { formatCurrency } from "../../utils/helper";
 
 const COLORS = ["#875CF5", "#FA2C37", "#FF6900"];
 
@@ -10,17 +11,18 @@ const FinanceOverview = ({ totalBalance, totalIncome, totalExpense }) => {
     { name: "Total Income", amount: totalIncome },
   ];
 
+  // ✅ pass numeric value, not preformatted string
   return (
     <div className="card">
       <div className="flex items-center justify-between">
         <h5 className="text-lg font-semibold">Financial Overview</h5>
       </div>
 
-      <CustomerPieChart
+      <CustomPieChart
         data={balanceData}
         label="Total Balance"
-        totalAmount={`$${totalBalance}`} // use backticks for template string
-        colors={COLORS}
+        totalAmount={totalBalance} // numeric value here
+        HiColorSwatch={COLORS}
         showTextAnchor
       />
     </div>

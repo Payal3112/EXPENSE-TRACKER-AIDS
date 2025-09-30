@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { LuPlus } from "react-icons/lu";
-import { prepareExpenseLineChartData } from "../../utils/helper";
 import CustomLineChart from "../Charts/CustomLineChart";
+import { prepareExpenseLineChartData } from "../../utils/helper";
 
 const ExpenseOverview = ({ transactions, onExpenseIncome }) => {
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
     const result = prepareExpenseLineChartData(transactions);
-    console.log("Chart Data:", result); // Debug chart data
+    // Chart still uses numeric amounts; formatting happens in tooltip
     setChartData(result);
   }, [transactions]);
 
@@ -22,6 +22,7 @@ const ExpenseOverview = ({ transactions, onExpenseIncome }) => {
             your money goes.
           </p>
         </div>
+
         <button
           className="add-btn flex items-center gap-1 px-3 py-1 text-sm bg-purple-600 text-white rounded hover:bg-purple-700"
           onClick={onExpenseIncome}

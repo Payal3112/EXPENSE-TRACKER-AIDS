@@ -23,6 +23,16 @@ export const addThousandsSeparator = (num) => {
   return Number(num).toLocaleString("en-IN");
 };
 
+// Format currency as Indian Rupee
+export const formatCurrency = (amount) => {
+  if (amount === null || amount === undefined || isNaN(amount)) return "₹0";
+  return new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    minimumFractionDigits: 2,
+  }).format(amount);
+};
+
 // Prepare expense chart
 export const prepareExpenseBarChartData = (data = []) => {
   return data.map((item) => ({
@@ -33,26 +43,21 @@ export const prepareExpenseBarChartData = (data = []) => {
 
 // Prepare income chart
 export const prepareIncomeBarChartData = (data = []) => {
-  console.log("Raw income data for chart:", data);
-
   if (!data.length) return [];
 
   const sortedData = [...data].sort(
     (a, b) => new Date(a.date) - new Date(b.date)
   );
 
-  const chartData = sortedData.map((item) => {
-    console.log("Processing income item:", item);
-    return {
-      month: moment(item?.date).format("Do MMM"),
-      amount: item?.amount,
-      source: item?.source,
-    };
-  });
+  const chartData = sortedData.map((item) => ({
+    month: moment(item?.date).format("Do MMM"),
+    amount: item?.amount,
+    source: item?.source,
+  }));
 
-  console.log("Prepared chartData:", chartData);
   return chartData;
 };
+
 export const prepareExpenseLineChartData = (data = []) => {
   if (!Array.isArray(data) || data.length === 0) return [];
 

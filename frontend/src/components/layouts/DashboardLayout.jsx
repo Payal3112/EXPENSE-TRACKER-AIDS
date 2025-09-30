@@ -13,7 +13,7 @@ const DashboardLayout = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* ✅ Expense Tracker top bar stays */}
+      {/* Fixed Navbar */}
       <Navbar onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
 
       <div className="flex flex-1">
@@ -31,16 +31,16 @@ const DashboardLayout = () => {
               onClick={() => setIsSidebarOpen(false)}
             />
             {/* Side menu */}
-            <div className="relative z-50">
+            <div className="relative z-50 h-full">
               <SideMenu activeMenu={activeMenu} />
             </div>
           </div>
         )}
 
         {/* Main content */}
-        <div className="flex-1 p-5 overflow-y-auto">
+        <div className="flex-1 p-5 pt-[61px] overflow-y-auto">
           {user ? (
-            <Outlet /> 
+            <Outlet />
           ) : (
             <p className="text-gray-500">Please log in to continue.</p>
           )}

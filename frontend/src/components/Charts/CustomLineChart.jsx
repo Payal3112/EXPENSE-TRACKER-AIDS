@@ -8,6 +8,7 @@ import {
   LineChart,
   Line,
 } from "recharts";
+import { formatCurrency } from "../../utils/helper"; // use helper
 
 const CustomLineChart = ({ data }) => {
   const [newPointIndex, setNewPointIndex] = useState(null);
@@ -30,7 +31,7 @@ const CustomLineChart = ({ data }) => {
           <p className="text-sm text-gray-600">
             Total Amount:{" "}
             <span className="text-sm font-medium text-gray-900">
-              ${payload[0].payload.amount.toFixed(2)}
+              {formatCurrency(payload[0].payload.amount)}
             </span>
           </p>
         </div>
@@ -39,21 +40,12 @@ const CustomLineChart = ({ data }) => {
     return null;
   };
 
-  // Custom Dot using SVG filter
   const AnimatedDot = (props) => {
     const { cx, cy, index } = props;
     const isNew = index === newPointIndex;
     return (
       <g>
-        {isNew && (
-          <circle
-            cx={cx}
-            cy={cy}
-            r={10}
-            fill="#875cf5"
-            filter="url(#glow)"
-          />
-        )}
+        {isNew && <circle cx={cx} cy={cy} r={10} fill="#875cf5" filter="url(#glow)" />}
         <circle cx={cx} cy={cy} r={5} fill="#875cf5" />
       </g>
     );

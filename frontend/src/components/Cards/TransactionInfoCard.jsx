@@ -1,5 +1,6 @@
 import React from "react";
 import { LuTrendingUp, LuTrendingDown, LuTrash2 } from "react-icons/lu";
+import { formatCurrency } from "../../utils/helper";
 
 const TransactionInfoCard = ({
   title,
@@ -10,7 +11,6 @@ const TransactionInfoCard = ({
   hideDeleteBtn,
   onDelete,
 }) => {
-  // Determine pill styling
   const getAmountStyles = () =>
     type === "income"
       ? "bg-green-50 text-green-500"
@@ -18,23 +18,24 @@ const TransactionInfoCard = ({
 
   return (
     <div className="group relative flex items-center gap-4 mt-2 p-3 rounded-lg hover:bg-gray-100/60">
-      {/* Icon Image */}
-      <div className="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-full">
-        <img
-          src={icon} // <-- your rent, food, salary images
-          alt={title}
-          className="w-8 h-8 object-cover rounded-full"
-        />
+      <div className="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-full text-2xl">
+        {typeof icon === "string" && icon.length <= 3 && !icon.startsWith("http") ? (
+          <span className="text-3xl">{icon}</span>
+        ) : (
+          <img
+            src={icon || "https://i.postimg.cc/default-income.png"}
+            alt={title}
+            className="w-8 h-8 object-cover rounded-full"
+          />
+        )}
       </div>
 
-      {/* Title and date */}
       <div className="flex-1 flex items-center justify-between">
         <div>
           <p className="text-sm text-gray-700 font-medium">{title}</p>
           <p className="text-xs text-gray-400 mt-1">{date}</p>
         </div>
 
-        {/* Amount and arrow */}
         <div className="flex items-center gap-2">
           {!hideDeleteBtn && (
             <button
@@ -49,7 +50,7 @@ const TransactionInfoCard = ({
             className={`flex items-center gap-1 px-3 py-1.5 rounded-md ${getAmountStyles()}`}
           >
             <h6 className="text-xs font-medium">
-              {type === "income" ? "+" : "-"} ${amount}
+              {type === "income" ? "+" : "-"} {formatCurrency(amount)}
             </h6>
             {type === "income" ? <LuTrendingUp /> : <LuTrendingDown />}
           </div>

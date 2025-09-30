@@ -3,7 +3,7 @@ import { Menu } from "lucide-react"; // or your icon library
 
 const Navbar = ({ onToggleSidebar }) => {
   return (
-    <div className="h-[61px] flex items-center justify-between px-5 border-b border-gray-200 bg-white">
+    <div className="fixed top-0 left-0 w-full h-[61px] flex items-center justify-between px-5 border-b border-gray-200 bg-white z-50">
       {/* Left: Hamburger + Title */}
       <div className="flex items-center gap-3">
         <button
@@ -15,10 +15,8 @@ const Navbar = ({ onToggleSidebar }) => {
         <h1 className="font-semibold text-lg">Expense Tracker</h1>
       </div>
 
-      {/* Right: (optional user info / actions) */}
-      <div className="flex items-center gap-4">
-        {/* Example placeholder */}
-      </div>
+      {/* Right: optional actions */}
+      <div className="flex items-center gap-4"></div>
     </div>
   );
 };
