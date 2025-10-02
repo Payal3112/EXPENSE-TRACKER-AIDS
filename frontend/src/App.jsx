@@ -51,8 +51,7 @@ const App = () => {
 
 export default App;
 
-// Redirect root based on auth
+// Always redirect root to login
 const Root = () => {
-  const isAuthenticated = !!localStorage.getItem("token");
-  return isAuthenticated ? <Navigate to="/dashboard" /> : <Navigate to="/login" />;
+  return <Navigate to="/login" replace />;
 };
