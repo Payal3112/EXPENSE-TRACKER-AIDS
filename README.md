@@ -1,4 +1,6 @@
 Expense Tracker with AI Insights
+
+<img width="442" height="204" alt="image" src="https://github.com/user-attachments/assets/4082dc33-aa59-4696-a7a9-1cc90a8ce343" />
 Overview
 
 Expense Tracker with AI Insights is a full-stack web application built using React.js, Node.js, Express.js, and MongoDB. It allows users to track daily expenses, categorize spending, and visualize financial trends. The app also leverages AI-powered insights to provide personalized suggestions for smarter budgeting and financial planning.
@@ -112,7 +114,6 @@ Enhance AI suggestions with machine learning trend analysis.
 
 Screenshots
 
-<img width="442" height="204" alt="image" src="https://github.com/user-attachments/assets/4082dc33-aa59-4696-a7a9-1cc90a8ce343" />
 
 <img width="194" height="199" alt="image" src="https://github.com/user-attachments/assets/e28a4231-7876-4588-88b4-28cd4fdeee53" />
 <img width="191" height="167" alt="image" src="https://github.com/user-attachments/assets/c9026eea-1505-408e-ad84-79297d840131" />
