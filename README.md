@@ -1,4 +1,5 @@
 Expense Tracker with AI Insights
+![WhatsApp Image 2025-10-01 at 22 59 44_0ed4c3e1](https://github.com/user-attachments/assets/e9d37003-0c03-4413-9753-d6183731c610)
 
 <img width="842" height="604" alt="image" src="https://github.com/user-attachments/assets/4082dc33-aa59-4696-a7a9-1cc90a8ce343" />
 
