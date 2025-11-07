@@ -1,6 +1,6 @@
 Expense Tracker with AI Insights
 
-<img width="442" height="204" alt="image" src="https://github.com/user-attachments/assets/4082dc33-aa59-4696-a7a9-1cc90a8ce343" />
+<img width="842" height="604" alt="image" src="https://github.com/user-attachments/assets/4082dc33-aa59-4696-a7a9-1cc90a8ce343" />
 
 
 
